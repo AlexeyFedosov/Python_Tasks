@@ -349,3 +349,528 @@ for i in array:
     else:
         result_plus += i
 print(array, result_plus, result_min)
+
+## Написать программу замену элементов массива на противоположные
+import random
+array = []
+
+for i in range(1, 13):
+    array.append(random.randint(-9, 9))
+    
+print(array)   
+
+for i in range(0, len(array)):
+    if array[i] < 0:
+        array[i] = abs(array[i])
+    else:
+        array[i] = array[i] * -1
+        
+print(array)
+
+## Определить, присутствует ли в заданном массиве, некоторое число
+
+import random
+array = []
+for i in range(1, 9):
+    array.append(random.randint(1, 10))
+print(array)   
+num = int(input('введите число которое будем искать: '))
+
+
+if num in array:
+    print(f'да, оно есть на позиции {array.index(num) + 1}. всего в списке это число встречается {array.count(num)} раз(а)')
+else:
+    print('такого числа нет')
+
+## Задать массив, заполнить случайными положительными трёхзначными числами. Показать количество нечетных\четных чисел
+
+import random
+array = []
+count_even = 0
+
+for i in range(1, 9):
+    array.append(random.randint(100, 999))
+print(array)  
+
+for i in array:
+    if i % 2 == 0:
+        count_even += 1
+        
+print(f'четных чисел {count_even}, а нечетных {len(array) - count_even}')
+
+## В одномерном массиве из 123 чисел найти количество элементов из отрезка [10,99]
+
+import random
+array = []
+count = 0
+
+for i in range(1, 124):
+    array.append(random.randint(1, 999))
+
+for i in array:
+    if i in range(10, 100):
+        count += 1
+        
+print(count) 
+
+## Найти сумму чисел одномерного массива стоящих на нечетной позиции
+
+import random
+array = []
+my_summa = 0
+
+for i in range(1, 15):
+    array.append(random.randint(1, 9))
+    
+for i in range(1, len(array), 2):
+    my_summa += array[i]
+    
+print(array, my_summa)
+
+## Найти произведение пар чисел в одномерном массиве. Парой считаем первый и последний элемент, второй и предпоследний и т.д.
+
+import random
+array = []
+new_array = []
+my_summa = 0
+
+for i in range(0, 11):
+    array.append(random.randint(1, 9))
+ 
+print(array)
+   
+   
+if len(array) % 2 != 0:
+    for i in range(0, round((len(array) - 1) / 2)):
+        new_array.append(array[i] * array[(i + 1) * (-1)])
+    new_array.append(array[round((len(array) - 1 )/ 2)])
+else:
+    for i in range(0, round(len(array) / 2)):
+        new_array.append(array[i] * array[(i + 1) * (-1)])
+    
+print(new_array)
+
+## В Указанном массиве вещественных чисел найдите разницу между максимальным и минимальным элементом
+
+import random
+array = []
+
+for i in range(0, 11):
+    array.append(random.randint(1, 9999))
+    
+min_value = min(array)
+max_value = max(array)
+
+print(f'{array} \n {max_value} - {min_value} = {max_value - min_value}')
+
+## Выяснить являются ли три числа сторонами треугольника
+
+triangle = []
+
+for i in range(0, 3):
+    triangle.append(int(input('введите значение стороны предполагаемого треугольника ')))
+    
+def realy_triangle(number):
+    a = number[0]
+    b = number[1]
+    c = number[2]   
+    return (a < (b + c)) and (b < (a + c)) and (c < (a + b));
+
+if realy_triangle(triangle):
+    print(*triangle, 'являются сторонами треугольника')
+else:
+    print(*triangle, 'не являются сторонами треугольника')
+
+## Определить сколько чисел больше 0 введено с клавиатуры
+
+count = 0
+
+while True:
+    my_number = input()
+    if my_number == 'end':
+        break
+    if int(my_number) > 0:
+        count += 1
+print(count)
+
+## Написать программу преобразования десятичного числа в двоичное
+
+number = int(input('введите число для преобразования в двоичное: '))
+
+def double_calc(n):
+    result = ''
+    while n != 0:
+        result = str(n % 2) + result
+        n //= 2
+    return result
+
+result = double_calc(number)
+print(result)
+
+## Найти точку пересечения двух прямых заданных уравнением y = k1 * x + b1, y = k2 * x + b2, b1 k1 и b2 и k2 заданы
+
+b1, k1, b2, k2 = input('Введите b1, k1, b2, k2 через пробел: ').split()
+b1 = int(b1)
+k1 = int(k1)
+b2 = int(b2)
+k2 = int(k2)
+
+if k1 == k2: 
+    print ('Прямые параллельны.')
+    exit(0)
+
+x = (b2 - b1) / (k1 - k2)
+y = k1 * x + b1 
+
+print(f'Координаты точки пересечения прямых x = {x}, y = {y}')
+
+## Показать числа Фибоначчи
+
+num = int(input('сколько чисел Фибоначчи показать? '))
+fib = [0, 1]
+
+for i in range(1, num - 1):
+    fib.append(fib[i] + fib[i - 1])
+    
+print(*fib)
+
+## Написать программу масштабирования фигуры. Масштабируем восьмиугольник
+
+my_string = ''
+my_list = []
+while True:
+    my_string = str(input('первое значение Х, второе Y '))
+    if my_string == 'end':
+        break
+    my_list.append([int(i) for i in my_string.split()])
+    
+#ищем координаты середины восьмиугольника
+# это пересечение линий между противоположными точками
+# y = a1*x+b1
+# y = a2*x+b2
+a1 = (my_list[0][1] - my_list[4][1]) / (my_list[0][0] - my_list[4][0])
+a2 = (my_list[1][1] - my_list[5][1]) / (my_list[1][0] - my_list[5][0])
+b1 = my_list[0][1] - a1 * my_list[0][0]
+b2 = my_list[1][1] - a2 * my_list[1][0]
+
+middle_x = (b2 - b1) / (a1 - a2)
+middle_y = a1 * middle_x + b1 
+
+print(f'координаты середины октагона х = {middle_x}, y = {middle_y}')
+
+# ищем расстояние от середины до каждой из вершин
+
+distance = []
+
+for i in range(0, len(my_list) - 1):
+    num = ((middle_x - my_list[i][0]) ** 2 + (middle_y - my_list[i][1]) ** 2) ** (1/3)
+    distance.append(round(num,2))
+
+print(*distance)
+
+def new_octagon(num, list, x, y):
+    for i in range(0, len(list)):
+        list[i][0] = num * list[i][0] - x
+        list[i][1] = num * list[i][1] - y
+    return list
+        
+def new_dist(num, distance_list):
+    for i in range(0, len(distance_list)):
+        distance_list[i] *= num 
+    return distance_list
+
+number = float(input('введите масштаб изменения фигуры: '))   
+new_list = new_octagon(number, my_list, middle_x, middle_y)
+new_distance = new_dist(number, distance)
+
+print(f'{new_list} \n {new_distance}')
+
+## Написать программу копирования массива
+import random
+array = []
+
+for i in range(1, 13):
+    array.append(random.randint(-9, 9))
+      
+new_array = []
+
+new_array.append([i for i in array])
+
+print(f'{array} \n{new_array}')
+
+# Показать двумерный массив размером m×n заполненный целыми числами
+import random
+
+
+m = int(input('Введите число m: '))
+n = int(input('Введите число n: '))
+array = [[0 for i in range(0, m)] for j in range(0, n)]
+
+for i in range(0, m):
+    for j in range(0, n):
+        array[j][i] = random.randint(1, 99)
+        
+for i in array:
+    print(i)
+
+## Показать двумерный массив размером m×n заполненный вещественными числами
+import random
+
+
+m = int(input('Введите число m: '))
+n = int(input('Введите число n: '))
+array = [[0 for i in range(0, m)] for j in range(0, n)]
+
+for i in range(0, m):
+    for j in range(0, n):
+        array[j][i] = round(random.uniform(1, 99), 4)
+        
+for i in array:
+    print(i)    
+
+## В двумерном массиве n×k заменить четные элементы на противоположные
+import random
+
+
+m = int(input('Введите число m: '))
+n = int(input('Введите число n: '))
+array = [[0 for i in range(0, m)] for j in range(0, n)]
+
+for i in range(0, m):
+    for j in range(0, n):
+        array[j][i] = random.randint(1, 99)
+
+for i in range(0, m):
+    for j in range(0, n):
+        if array[j][i] % 2 == 0:
+            array[j][i] *= -1
+        
+for i in array:
+    print(i)
+
+## Задать двумерный массив следующим правилом: Aₘₙ = m+n
+m = int(input('Введите число m: '))
+n = int(input('Введите число n: '))
+array = [[0 for i in range(0, m)] for j in range(0, n)]
+
+for i in range(0, m):
+    for j in range(0, n):
+        array[j][i] = i + j
+        
+for i in array:
+    print(i)
+
+## В двумерном массиве заменить элементы, у которых оба индекса чётные на их квадраты
+
+import random
+
+
+m = int(input('Введите число m: '))
+n = int(input('Введите число n: '))
+array = [[0 for i in range(0, m)] for j in range(0, n)]
+
+for i in range(0, m):
+    for j in range(0, n):
+        array[j][i] = random.randint(1, 99)
+        
+
+for i in range(0, m, 2):
+    for j in range(0, n, 2):
+        array[j][i] **= 2
+ 
+        
+for i in array:
+    print(i)
+
+## В двумерном массиве показать позиции числа, заданного пользователем или указать, что такого элемента нет
+
+
+import random
+
+
+m = int(input('Введите число m: '))
+n = int(input('Введите число n: '))
+array = [[0 for i in range(0, m)] for j in range(0, n)]
+
+for i in range(0, m):
+    for j in range(0, n):
+        array[j][i] = random.randint(1, 9)
+        
+num = int(input('inter a number for search: '))
+
+count = 0           
+for i in range(0, m):    
+    for j in range(0, n):
+        if array[j][i] == num:
+            print(f'{num} in [{j}][{i}] position')
+            count += 1
+
+if count == 0:
+    print('not in a list')
+            
+        
+for i in array:
+    print(i)
+
+## Дан целочисленный массив. Найти среднее арифметическое каждого из столбцов.
+
+import random
+from all_def import fill, print_ar
+
+m = 4
+array = [[0 for i in range(0, m)] for j in range(0, m)]
+       
+def middle(any):
+    mid = []
+    summ = 0
+    for i in range(0, len(any)):
+        for j in range(0, len(any[0])):
+            summ += any[j][i]
+        mid.append(summ/len(any))
+        summ = 0
+    return mid
+            
+fill(array)
+print_ar(array)
+print(middle(array))
+
+## В матрице чисел найти сумму элементов главной диагонали
+
+import random
+from all_def import fill, print_ar
+m = int(input('Введите число m: '))
+array = [[0 for i in range(0, m)] for j in range(0, m)]
+
+def summa(any):
+    j = 0
+    summ = 0
+    for i in range(0, len(any)):
+        summ += any[i][j]
+        j += 1
+    return summ
+      
+
+fill(array)
+print_ar(array)
+print(summa(array))
+
+## Написать программу, которая обменивает элементы первой строки и последней строки
+
+import random
+from all_def import fill, print_ar
+
+m = 4
+array = [[0 for i in range(0, m)] for j in range(0, m)]
+
+def rebase(any):
+    count = any[0]
+    any[0] = any[len(any) - 1]
+    any[len(any) - 1] = count
+    return any
+        
+fill(array)
+print_ar(array)
+rebase(array)
+print()
+print_ar(array)
+
+## Написать программу, упорядочивания по убыванию элементы каждой строки двумерной массива.
+
+import random
+from all_def import fill, print_ar
+
+m = 4
+array = [[0 for i in range(0, m)] for j in range(0, m)]
+        
+def sorting(any):
+    for i in any:
+        i.sort(reverse = True)
+    return any
+
+fill(array)
+print_ar(array)
+print()
+sorting(array)
+print_ar(array)
+
+## Написать программу, которая в двумерном массиве заменяет строки на столбцы или сообщить, 
+# что это невозможно (в случае, если матрица не квадратная).
+
+import random
+from all_def import fill, print_ar
+
+m = int(input('Введите число m: '))
+n = int(input('Введите число n: '))
+array = [[0 for i in range(0, m)] for j in range(0, n)]
+if m != n:
+    print('замена не возможна!')
+    exit(0)
+ 
+def rebase(any):
+    new_any = [[0 for i in range(0, len(any))] for j in range(0, len(any))]
+    for i in range(0, len(any)):
+        for j in range(0, len(any[0])):
+            new_any[j][i] = any[i][j]
+    return new_any
+        
+fill(array)
+print_ar(array)
+print()
+print_ar(rebase(array))
+
+## В прямоугольной матрице найти строку с наименьшей суммой элементов.
+
+import random
+from all_def import fill, print_ar
+
+m = int(input('Введите число m: '))
+n = int(input('Введите число n: '))
+array = [[0 for i in range(0, m)] for j in range(0, n)]
+if m == n:
+    print('необходима прямоугольная матрица')
+    exit(0)
+
+def search(any):
+    min_summa = 99999
+    min_list = []
+    summ = 0
+    for i in any:
+        for j in range(0, len(i)):
+            summ += i[j]
+        if summ < min_summa:
+            min_summa = summ
+            min_list = i
+        summ = 0
+    return min_list, min_summa
+        
+
+fill(array)
+print_ar(array)
+print()
+print(search(array))
+
+## Составить частотный словарь элементов двумерного массива
+
+import random
+from all_def import fill, print_ar
+
+m = 10
+array = [[0 for i in range(0, m)] for j in range(0, m)]
+
+def dictinary(any):
+    my_dict = {}
+    for i in range(0, len(any)):
+        for j in range(0, len(any[0])):
+            if any[i][j] not in my_dict.keys():
+                my_dict[any[i][j]] = 1
+            else:
+                my_dict[any[i][j]] += 1                
+    return my_dict
+
+            
+fill(array)
+print_ar(array)
+result = dictinary(array)
+
+for key,value in result.items():
+    print(f'{key}: {value} - {round(value/((m * m) / 100), 2)}%')
